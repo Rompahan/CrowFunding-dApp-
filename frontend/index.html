@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crowdfunding DApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 8.5V19.5L14 26L2 19.5V8.5L14 2Z" fill="#F0B90B"/>
+            <path d="M14 7L9 10V16L14 19L19 16V10L14 7Z" fill="#0B0E11"/>
+          </svg>
+          <span class="logo-name">Crowd<strong>Fund</strong></span>
+        </div>
+        <div class="topbar-right">
+          <button id="connectBtn">Connect Wallet</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="status-strip">
+      <div class="status-strip-inner">
+        <div class="status-cell">
+          <span class="status-label">Address</span>
+          <span class="status-val mono" id="addr">—</span>
+        </div>
+        <div class="status-cell">
+          <span class="status-label">Network</span>
+          <span class="status-val mono" id="net">—</span>
+        </div>
+        <div class="status-cell">
+          <span class="status-label">ETH Balance</span>
+          <span class="status-val mono yellow" id="ethBal">—</span>
+        </div>
+        <div class="status-cell">
+          <span class="status-label">Reward Tokens</span>
+          <span class="status-val mono green" id="tokBal">—</span>
+        </div>
+      </div>
+    </div>
+
+    <main class="main-wrap">
+
+      <div class="row">
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-icon">🚀</span>
+            <h3>Create Campaign</h3>
+          </div>
+          <div class="field-wrap">
+            <label>Title</label>
+            <input id="title" type="text" placeholder="My DeFi Project" />
+          </div>
+          <div class="field-wrap">
+            <label>Goal (ETH)</label>
+            <input id="goal" type="number" placeholder="1.0" step="0.01" min="0" />
+          </div>
+          <div class="field-wrap">
+            <label>Duration (seconds)</label>
+            <input id="duration" type="number" placeholder="86400" min="1" />
+          </div>
+          <button id="createBtn" class="btn btn-primary">Create Campaign</button>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-icon">💰</span>
+            <h3>Contribute</h3>
+          </div>
+          <div class="field-wrap">
+            <label>Campaign ID</label>
+            <input id="cid" type="number" placeholder="1" min="1" />
+          </div>
+          <div class="field-wrap">
+            <label>Amount (ETH)</label>
+            <input id="amount" type="number" placeholder="0.1" step="0.001" min="0" />
+          </div>
+          <div class="earn-note">
+            <span class="earn-dot"></span>
+            Earn ALD reward tokens on every contribution
+          </div>
+          <button id="contribBtn" class="btn btn-primary">Contribute</button>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-icon">📊</span>
+            <h3>Campaign Info</h3>
+          </div>
+          <div class="field-wrap">
+            <label>Campaign ID</label>
+            <input id="infoId" type="number" placeholder="1" min="1" />
+          </div>
+          <button id="infoBtn" class="btn btn-secondary">Load Info</button>
+          <div id="infoBox"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-icon">🏁</span>
+            <h3>Finalize</h3>
+          </div>
+          <div class="field-wrap">
+            <label>Campaign ID</label>
+            <input id="finId" type="number" placeholder="1" min="1" />
+          </div>
+          <div class="finalize-note">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6.5" stroke="#F6465D" stroke-opacity="0.5"/>
+              <rect x="6.5" y="3.5" width="1" height="4" rx="0.5" fill="#F6465D"/>
+              <rect x="6.5" y="9" width="1" height="1" rx="0.5" fill="#F6465D"/>
+            </svg>
+            Only callable after campaign deadline
+          </div>
+          <button id="finalizeBtn" class="btn btn-danger">Finalize Campaign</button>
+        </div>
+
+      </div>
+
+      <div class="log-panel">
+        <div class="log-header">
+          <span class="log-live-dot"></span>
+          Transaction Log
+        </div>
+        <div id="log">Waiting for wallet connection...</div>
+      </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <script src="ethers.js"></script>
+  </body>
+</html>
